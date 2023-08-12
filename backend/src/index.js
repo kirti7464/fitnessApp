@@ -8,7 +8,11 @@ require("dotenv").config()
 
 const {MONGO_URL,PORT}=process.env
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin: ["https://deploy-mern-frontend.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true
+}));
 app.use(express.urlencoded({extended:true}))
 
 DbConn(MONGO_URL)
